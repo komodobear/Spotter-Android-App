@@ -22,7 +22,7 @@ Created to showcase my skills in android development
 - Room Database
 - Retrofit (Geocoding API)
 - Google Maps SDK
-- 
+
 ## Screenshots
 <p align="center">
   <img src="screenshots/screen_1.jpg" alt="Main Screen Dark" width="250"/>
