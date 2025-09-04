@@ -365,7 +365,7 @@ fun AddEditScreen(
 
             Button(onClick = {
 
-                if(viewModel.titleState.isNotEmpty() && viewModel.descState.isNotEmpty()){
+                if(viewModel.titleState.isNotEmpty()){
 
                     val finalAddress = when{
                         id != 0L && viewModel.address.value.isEmpty() -> viewModel.initialAddress
@@ -399,7 +399,7 @@ fun AddEditScreen(
                         snackMessage.value = "Spot added!"
                     }
                 }else{
-                    snackMessage.value = "Fields cannot be empty"
+                    snackMessage.value = "Name cannot be empty"
                 }
 
                 scope.launch {

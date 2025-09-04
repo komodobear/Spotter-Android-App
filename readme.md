@@ -22,3 +22,15 @@ Created to showcase my skills in android development
 - Room Database
 - Retrofit (Geocoding API)
 - Google Maps SDK
+- 
+## Screenshots
+<p align="center">
+  <img src="screenshots/screen_1.jpg" alt="Main Screen Dark" width="250"/>
+  <img src="screenshots/screen_2.jpg" alt="Main Screen Light" width="250"/>
+  <img src="screenshots/screen_3.jpg" alt="Edit Screen" width="250"/>
+</p>
+<p align="center">
+  <img src="screenshots/screen_4.jpg" alt="Photo Preview" width="250"/>
+  <img src="screenshots/screen_5.jpg" alt="Setting Location" width="250"/>
+  <img src="screenshots/screen_6.jpg" alt="Map Screen" width="250"/>
+</p>
