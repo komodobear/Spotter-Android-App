@@ -25,7 +25,7 @@ Created to showcase my skills in android development
 
 ## Download
 
-[Download Spotter APK](https://github.com/komodobear/Spotter-Android-App/releases/latest)
+[Download Spotter APK](https://github.com/komodobear/Spotter-AndroidApp/releases/latest)
 
 ## Screenshots
 <p align="center">
