@@ -260,10 +260,10 @@ fun LocationSelect(
                 Text(text = "Set location", color = Color.White)
             }
 
-            if (viewModel.kotLocation != null) {
+            if (viewModel.spotLocation != null) {
                 Button(
                     onClick = {
-                        viewModel.kotLocation = null
+                        viewModel.spotLocation = null
                         viewModel.resetAddress()
                         navController.popBackStack()
                     },

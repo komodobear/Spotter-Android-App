@@ -27,7 +27,7 @@ class SpotVM(
 	private val spotRepository: SpotRepository = Graph.SpotRepository
 ): ViewModel() {
 
-	lateinit var getAllKotek: Flow<List<SpotData>>
+	lateinit var allSpotsFlow: Flow<List<SpotData>>
 
 	private val _userLocation = MutableStateFlow<LocationData?>(null)
 	val userLocation: StateFlow<LocationData?> = _userLocation.asStateFlow()
@@ -37,16 +37,16 @@ class SpotVM(
 
 	var titleState by mutableStateOf("")
 	var descState by mutableStateOf("")
-	var kotLocation by mutableStateOf<LocationData?>(null)
+	var spotLocation by mutableStateOf<LocationData?>(null)
 	var initialAddress by mutableStateOf("")
 	var imagePath by mutableStateOf<String?>(null)
 
 	init {
 		viewModelScope.launch {
 			try {
-				getAllKotek = spotRepository.getAllKotek()
+				allSpotsFlow = spotRepository.getAllSpots()
 			} catch(e: Exception) {
-				Log.e("SpotVM", "Error getting all kot", e)
+				Log.e("SpotVM", "Error getting all spots", e)
 			}
 		}
 	}
@@ -89,52 +89,52 @@ class SpotVM(
 		_address.value = emptyList()
 	}
 
-	fun initEditData(kotek: SpotData) {
-		titleState = kotek.name
-		descState = kotek.description
-		initialAddress = kotek.address ?: ""
-		imagePath = kotek.imagePath
-		kotLocation = if(kotek.latitude != null && kotek.longitude != null) {
-			LocationData(kotek.latitude, kotek.longitude)
+	fun initEditData(spot: SpotData) {
+		titleState = spot.name
+		descState = spot.description
+		initialAddress = spot.address ?: ""
+		imagePath = spot.imagePath
+		spotLocation = if(spot.latitude != null && spot.longitude != null) {
+			LocationData(spot.latitude, spot.longitude)
 		} else {
 			null
 		}
 
-		if(kotek.latitude != null && kotek.longitude != null && address.value.isEmpty()) {
-			fetchAddress("${kotek.latitude},${kotek.longitude}")
+		if(spot.latitude != null && spot.longitude != null && address.value.isEmpty()) {
+			fetchAddress("${spot.latitude},${spot.longitude}")
 		}
 	}
 
-	fun getKotekByID(id: Long): Flow<SpotData> {
-		return spotRepository.getKotekByID(id)
+	fun getSpotById(id: Long): Flow<SpotData> {
+		return spotRepository.getSpotById(id)
 	}
 
-	fun addKotek(kot: SpotData) {
+	fun addSpot(spot: SpotData) {
 		viewModelScope.launch(Dispatchers.IO) {
 			try {
-				spotRepository.addKot(kot)
+				spotRepository.addSpot(spot)
 			} catch(e: Exception) {
-				Log.e("SpotVM", "Error adding kot", e)
+				Log.e("SpotVM", "Error adding spot", e)
 			}
 		}
 	}
 
-	fun updateKotek(kot: SpotData) {
+	fun updateSpot(spot: SpotData) {
 		viewModelScope.launch(Dispatchers.IO) {
 			try {
-				spotRepository.updateKot(kot)
+				spotRepository.updateSpot(spot)
 			} catch(e: Exception) {
-				Log.e("SpotVM", "Error updating kot", e)
+				Log.e("SpotVM", "Error updating spot", e)
 			}
 		}
 	}
 
-	fun deleteKotek(kot: SpotData) {
+	fun deleteSpot(spot: SpotData) {
 		viewModelScope.launch(Dispatchers.IO) {
 			try {
-				spotRepository.deleteKot(kot)
+				spotRepository.deleteSpot(spot)
 			} catch(e: Exception) {
-				Log.e("SpotVM", "Error deleting kot", e)
+				Log.e("SpotVM", "Error deleting spot", e)
 			}
 		}
 	}
@@ -165,7 +165,7 @@ class SpotVM(
 		titleState = ""
 		descState = ""
 		_address.value = emptyList()
-		kotLocation = null
+		spotLocation = null
 		imagePath = null
 	}
 }

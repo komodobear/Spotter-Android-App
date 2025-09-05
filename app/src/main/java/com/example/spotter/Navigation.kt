@@ -66,7 +66,7 @@ fun navigation(
                     }else{
                         Toast.makeText(context,"Błąd sieci, nie można zmienić lokalizacji",Toast.LENGTH_SHORT).show()
                     }
-                    viewModel.kotLocation = LocationData(it.latitude,it.longitude)
+                    viewModel.spotLocation = LocationData(it.latitude,it.longitude)
                     navController.popBackStack()
                 })
             }

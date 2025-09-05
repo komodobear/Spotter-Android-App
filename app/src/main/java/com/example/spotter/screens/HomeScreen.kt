@@ -38,7 +38,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -89,18 +88,18 @@ fun HomeScreen(
 			bottomBar = { BottomBar(navController) },
 			backgroundColor = Color.Transparent
 		) {
-			val spotlist = viewModel.getAllKotek.collectAsState(initial = listOf())
+			val spotlist = viewModel.allSpotsFlow.collectAsState(initial = listOf())
 			LazyColumn(
 				modifier = Modifier
 					.padding(it)
 					.fillMaxSize()
 			) {
-				items(spotlist.value, key = { kot -> kot.id }) { kot ->
+				items(spotlist.value, key = { spot -> spot.id }) { spot ->
 
 					val dismissState = rememberDismissState(
 						confirmStateChange = {
 							if(it == DismissValue.DismissedToStart || it == DismissValue.DismissedToEnd) {
-								viewModel.deleteKotek(kot)
+								viewModel.deleteSpot(spot)
 							}
 							true
 						}
@@ -151,8 +150,8 @@ fun HomeScreen(
 						directions = setOf(DismissDirection.EndToStart),
 						dismissThresholds = { FractionalThreshold(0.70f) },
 						dismissContent = {
-							SpotCard(spot = kot) {
-								val id = kot.id
+							SpotCard(spot = spot) {
+								val id = spot.id
 								navController.navigate(NavScreen.AddScreen.route + "/$id")
 							}
 						}

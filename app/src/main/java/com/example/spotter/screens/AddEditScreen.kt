@@ -267,10 +267,10 @@ fun AddEditScreen(
     }
     
     if (id != 0L) {
-        val kot = viewModel.getKotekByID(id).collectAsState(initial = SpotData(0L,"",""))
-        LaunchedEffect(kot.value) {
-            if (kot.value.id != 0L) {
-                viewModel.initEditData(kot.value)
+        val spot = viewModel.getSpotById(id).collectAsState(initial = SpotData(0L,"",""))
+        LaunchedEffect(spot.value) {
+            if (spot.value.id != 0L) {
+                viewModel.initEditData(spot.value)
             }
         }
     }
@@ -373,26 +373,26 @@ fun AddEditScreen(
                     }
 
                     if(id!=0L){
-                        viewModel.updateKotek(
+                        viewModel.updateSpot(
                             SpotData(
                                 id = id,
                                 name = viewModel.titleState.trim(),
                                 description = viewModel.descState.trim(),
                                 address = finalAddress,
-                                latitude = viewModel.kotLocation?.latitude,
-                                longitude = viewModel.kotLocation?.longitude,
+                                latitude = viewModel.spotLocation?.latitude,
+                                longitude = viewModel.spotLocation?.longitude,
                                 imagePath = viewModel.imagePath ?: ""
                             )
                         )
                         snackMessage.value = "Spot updated!"
                     }else{
-                        viewModel.addKotek(
+                        viewModel.addSpot(
                             SpotData(
                                 name = viewModel.titleState.trim(),
                                 description = viewModel.descState.trim(),
                                 address = finalAddress,
-                                latitude = viewModel.kotLocation?.latitude,
-                                longitude = viewModel.kotLocation?.longitude,
+                                latitude = viewModel.spotLocation?.latitude,
+                                longitude = viewModel.spotLocation?.longitude,
                                 imagePath = viewModel.imagePath ?: ""
                             )
                         )

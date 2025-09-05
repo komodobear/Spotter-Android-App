@@ -56,7 +56,7 @@ fun MapScreen(
     val userLocation = viewModel.userLocation.collectAsState()
 
     val cameraPosition = rememberCameraPositionState()
-    val allSpots = viewModel.getAllKotek.collectAsState(initial = emptyList())
+    val allSpots = viewModel.allSpotsFlow.collectAsState(initial = emptyList())
     val spotsWithLocation = allSpots.value.filter {
         it.latitude != null && it.longitude != null
     }

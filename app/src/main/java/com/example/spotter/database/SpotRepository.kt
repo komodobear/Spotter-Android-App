@@ -4,21 +4,21 @@ import kotlinx.coroutines.flow.Flow
 
 class SpotRepository(private val spotDao: SpotDao) {
 
-    suspend fun addKot(kot: SpotData){
-        spotDao.addSpot(kot)
+    suspend fun addSpot(spot: SpotData){
+        spotDao.addSpot(spot)
     }
 
-    suspend fun updateKot(kot: SpotData){
-        spotDao.updateSpot(kot)
+    suspend fun updateSpot(spot: SpotData){
+        spotDao.updateSpot(spot)
     }
 
-    suspend fun deleteKot(kot: SpotData){
-        spotDao.deleteSpot(kot)
+    suspend fun deleteSpot(spot: SpotData){
+        spotDao.deleteSpot(spot)
     }
 
-    fun getAllKotek(): Flow<List<SpotData>> = spotDao.getAllSpots()
+    fun getAllSpots(): Flow<List<SpotData>> = spotDao.getAllSpots()
 
-    fun getKotekByID(id: Long): Flow<SpotData>{
+    fun getSpotById(id: Long): Flow<SpotData>{
         return spotDao.getSpotById(id)
     }
 

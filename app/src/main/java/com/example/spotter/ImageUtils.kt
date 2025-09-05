@@ -19,7 +19,7 @@ object ImageUtils {
     fun createImageFile(context: Context): File {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val storageDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        return File(storageDir, "KOT_${timeStamp}.jpg").apply {
+        return File(storageDir, "SPOT_${timeStamp}.jpg").apply {
             parentFile?.mkdirs()
         }
     }
