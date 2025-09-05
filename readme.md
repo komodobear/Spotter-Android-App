@@ -23,6 +23,10 @@ Created to showcase my skills in android development
 - Retrofit (Geocoding API)
 - Google Maps SDK
 
+## Download
+
+[Download ChatteR APK](https://github.com/komodobear/Spotter-AndroidApp/releases/latest)
+
 ## Screenshots
 <p align="center">
   <img src="screenshots/screen_1.jpg" alt="Main Screen Dark" width="250"/>
