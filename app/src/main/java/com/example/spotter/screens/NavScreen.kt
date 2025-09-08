@@ -1,4 +1,4 @@
-package com.example.spotter
+package com.example.spotter.screens
 
 import android.net.Uri
 

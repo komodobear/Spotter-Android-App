@@ -10,36 +10,27 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.spotter.database.Graph
 import com.example.spotter.database.SpotData
 import com.example.spotter.database.SpotRepository
+import com.example.spotter.location.GeoCodingApiService
 import com.example.spotter.location.GeocodingResult
 import com.example.spotter.location.LocationData
-import com.example.spotter.location.LocationRetrofit
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SpotVM(
-	private val spotRepository: SpotRepository = Graph.SpotRepository
+@HiltViewModel
+class SpotVM @Inject constructor(
+	private val spotRepository: SpotRepository,
+	private val geoCodingApiService: GeoCodingApiService
 ): ViewModel() {
 
 	lateinit var allSpotsFlow: Flow<List<SpotData>>
-
-	private val _userLocation = MutableStateFlow<LocationData?>(null)
-	val userLocation: StateFlow<LocationData?> = _userLocation.asStateFlow()
-
-	private val _address = mutableStateOf(listOf<GeocodingResult>())
-	val address: State<List<GeocodingResult>> = _address
-
-	var titleState by mutableStateOf("")
-	var descState by mutableStateOf("")
-	var spotLocation by mutableStateOf<LocationData?>(null)
-	var initialAddress by mutableStateOf("")
-	var imagePath by mutableStateOf<String?>(null)
 
 	init {
 		viewModelScope.launch {
@@ -52,6 +43,18 @@ class SpotVM(
 	}
 
 	val apikey = BuildConfig.API_KEY
+
+	private val _userLocation = MutableStateFlow<LocationData?>(null)
+	val userLocation: StateFlow<LocationData?> = _userLocation.asStateFlow()
+
+	private val _address = mutableStateOf(listOf<GeocodingResult>())
+	val address: State<List<GeocodingResult>> = _address
+
+	var titleState by mutableStateOf("")
+	var descState by mutableStateOf("")
+	var spotLocation by mutableStateOf<LocationData?>(null)
+	var initialAddress by mutableStateOf("")
+	var imagePath by mutableStateOf<String?>(null)
 
 	fun hasNetworkConnection(context: Context): Boolean {
 		val connectivityManager =
@@ -74,7 +77,7 @@ class SpotVM(
 	fun fetchAddress(latlng: String) {
 		try {
 			viewModelScope.launch {
-				val result = LocationRetrofit.createR().getAddressFromCoordinates(
+				val result = geoCodingApiService.getAddressFromCoordinates(
 					latlng, apikey
 				)
 				Log.d("fetchAddress", "Response ${result.results}")

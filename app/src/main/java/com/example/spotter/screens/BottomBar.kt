@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
-import com.example.spotter.NavScreen
+import com.example.spotter.screens.NavScreen
 
 @Composable
 fun BottomBar(

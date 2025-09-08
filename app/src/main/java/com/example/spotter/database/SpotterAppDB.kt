@@ -1,10 +1,7 @@
 package com.example.spotter.database
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-class SpotterAppDB: Application() {
-	override fun onCreate() {
-		super.onCreate()
-		Graph.provide(this)
-	}
-}
+@HiltAndroidApp
+class SpotterAppDB: Application()

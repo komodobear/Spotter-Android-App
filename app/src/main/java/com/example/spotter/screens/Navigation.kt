@@ -1,4 +1,4 @@
-package com.example.spotter
+package com.example.spotter.screens
 
 import android.content.Context
 import android.net.Uri
@@ -16,21 +16,18 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.spotter.screens.NavScreen
+import com.example.spotter.SpotVM
 import com.example.spotter.location.LocationData
 import com.example.spotter.location.LocationUtils
-import com.example.spotter.screens.AddEditScreen
-import com.example.spotter.screens.HomeScreen
-import com.example.spotter.screens.LocationSelect
-import com.example.spotter.screens.MapScreen
-import com.example.spotter.screens.PhotoView
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 fun navigation(
-    viewModel: SpotVM = viewModel(),
-    navController: NavHostController = rememberNavController(),
-    context: Context = LocalContext.current,
-    locationUtils: LocationUtils = LocationUtils(context)
+	viewModel: SpotVM = viewModel(),
+	navController: NavHostController = rememberNavController(),
+	context: Context = LocalContext.current,
+	locationUtils: LocationUtils = LocationUtils(context)
     ){
     NavHost(
         navController = navController,

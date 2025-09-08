@@ -45,7 +45,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.spotter.SpotVM
-import com.example.spotter.NavScreen
+import com.example.spotter.screens.NavScreen
 import com.example.spotter.R
 import com.example.spotter.database.SpotData
 

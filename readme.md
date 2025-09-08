@@ -19,6 +19,7 @@ Created to showcase my skills in android development
 - Jetpack Navigation
 - MVVM + Repository 
 - Coroutines & Flow
+- Hilt (Dependency Injection)
 - Room Database
 - Retrofit (Geocoding API)
 - Google Maps SDK

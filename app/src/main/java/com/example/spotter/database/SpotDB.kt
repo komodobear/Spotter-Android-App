@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [SpotData::class],
-    version = 3,
+    version = 1,
     exportSchema = false
 )
 abstract class SpotDB: RoomDatabase() {

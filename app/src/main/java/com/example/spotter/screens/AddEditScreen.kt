@@ -59,7 +59,7 @@ import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.example.spotter.ImageUtils
 import com.example.spotter.MainActivity
-import com.example.spotter.NavScreen
+import com.example.spotter.screens.NavScreen
 import com.example.spotter.SpotVM
 import com.example.spotter.database.SpotData
 import com.example.spotter.location.LocationUtils
